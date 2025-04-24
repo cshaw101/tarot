@@ -1,2 +1,39 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
+.bg-tarot {
+  background: linear-gradient(180deg, #1a0033 0%, #330066 50%, #000000 100%);
+  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.2)" /%3E%3Ccircle cx="18" cy="18" r="1" fill="rgba(255,255,255,0.2)" /%3E%3C/svg%3E');
+  background-size: 20px 20px;
+}
+
+.table-container {
+  background: linear-gradient(145deg, #4b0082, #800080);
+  border: 3px solid #ffd700;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.rune-button {
+  @apply px-6 py-3 rounded-lg shadow-lg text-sm sm:text-base font-semibold;
+  background: linear-gradient(145deg, #4b0082, #6a0dad);
+  border: 2px solid #ffd700;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+.rune-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+.rune-button:active {
+  transform: scale(0.95);
+}
+
+.card-glow {
+  transition: box-shadow 0.3s;
+}
+.card-glow:hover {
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.font-tarot {
+  font-family: 'Cinzel', serif;
+}

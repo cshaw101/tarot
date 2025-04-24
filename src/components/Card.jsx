@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Card = ({ frontImage, backImage, name, onClick }) => {
-  const [isRevealed, setIsRevealed] = useState(false);
-
-  const handleClick = () => {
-    if (!isRevealed) {
-      setIsRevealed(true);
-      onClick(name);
-    }
-  };
-
+const Card = ({ frontImage, backImage, name, onClick, isRevealed, isInHand }) => {
   return (
     <div
-      className="w-[160px] h-[256px] cursor-pointer transition-transform transform hover:scale-105"
-      onClick={handleClick}
+      className={`w-[90px] h-[144px] sm:w-[110px] sm:h-[176px] cursor-pointer transition-transform duration-300 transform ${isInHand ? 'active:scale-95' : ''} card-glow`}
+      onClick={onClick}
+      role="button"
+      aria-label={isInHand ? `Place ${name} in slot` : `Flip ${name}`}
     >
-      <div className="w-[160px] h-[256px] rounded-lg shadow-md overflow-hidden bg-white flex items-center justify-center">
-        <div className="w-[160px] h-[256px] relative">
-          <img
-            src={isRevealed ? frontImage : backImage}
-            alt={name}
-            className="w-[160px] h-[256px] min-w-[160px] max-w-[160px] min-h-[256px] max-h-[256px] object-contain absolute top-0 left-0"
-            style={{ width: '160px', height: '256px', aspectRatio: 'unset' }}
-          />
-        </div>
+      <div className="w-full h-full rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
+        <img
+          src={isRevealed ? frontImage : backImage}
+          alt={name}
+          className={`w-full h-full ${isRevealed ? 'object-contain' : 'object-cover'} transition-opacity duration-300`}
+        />
       </div>
     </div>
   );
