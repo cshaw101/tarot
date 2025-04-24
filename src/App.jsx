@@ -57,11 +57,8 @@ const App = () => {
 
   return (
     <div className="w-screen h-screen bg-pumpkin overflow-hidden flex flex-col items-center justify-center m-0 p-0">
-
-
       {/* Tarot Table */}
-      <div className="table-container w-full h-full p-0 m-0 flex flex-col items-center justify-center">
-
+      <div className="table-container w-full h-full p-0 m-0 flex flex-col items-center justify-center gap-4 overflow-hidden">
         {/* Header */}
         <h1 className="text-base sm:text-2xl font-pumpkin text-amber-200 mb-2 sm:mb-4">🎃 Enchanted Pumpkin Tarot</h1>
 
@@ -82,61 +79,58 @@ const App = () => {
           </button>
         </div>
 
-      {/* Placed Cards (Table Slots) */}
-<div className="flex flex-col items-center justify-center gap-2 sm:gap-4 flex-1">
-  {/* Top row: 3 cards */}
-  <div className="flex justify-center items-center gap-2 sm:gap-4">
-    {placedCards.slice(0, 3).map((card, index) => (
-      <div
-        key={index}
-        className="w-[80px] h-[128px] sm:w-[130px] sm:h-[200px]
- bg-orange-900 rounded-lg flex items-center justify-center"
-      >
-        {card ? (
-          <Card
-            frontImage={card.image}
-            backImage={backOfCard}
-            name={card.name}
-            onClick={() => handleFlip(index)}
-            isRevealed={revealed[index] || false}
-            isInHand={false}
-          />
-        ) : (
-          <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
-        )}
-      </div>
-    ))}
-  </div>
+        {/* Placed Cards (Table Slots) */}
+        <div className="flex flex-col items-center justify-center gap-2 flex-1 overflow-auto">
+          {/* Top row: 3 cards */}
+          <div className="flex justify-center items-center gap-2 max-w-full p-2">
+            {placedCards.slice(0, 3).map((card, index) => (
+              <div
+                key={index}
+                className="w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1" // Adjusted width and height for better fit
+              >
+                {card ? (
+                  <Card
+                    frontImage={card.image}
+                    backImage={backOfCard}
+                    name={card.name}
+                    onClick={() => handleFlip(index)}
+                    isRevealed={revealed[index] || false}
+                    isInHand={false}
+                  />
+                ) : (
+                  <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
+                )}
+              </div>
+            ))}
+          </div>
 
-  {/* Bottom row: 2 cards, slightly indented */}
-  <div className="flex justify-center items-center gap-2 sm:gap-4 mt-1 sm:mt-2 pl-6 sm:pl-12">
-    {placedCards.slice(3, 5).map((card, index) => (
-      <div
-        key={index + 3}
-        className="w-[80px] h-[128px] sm:w-[130px] sm:h-[200px]
- bg-orange-900 rounded-lg flex items-center justify-center"
-      >
-        {card ? (
-          <Card
-            frontImage={card.image}
-            backImage={backOfCard}
-            name={card.name}
-            onClick={() => handleFlip(index + 3)}
-            isRevealed={revealed[index + 3] || false}
-            isInHand={false}
-          />
-        ) : (
-          <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
-        )}
-      </div>
-    ))}
-  </div>
-</div>
-
+          {/* Bottom row: 2 cards, slightly indented */}
+          <div className="flex justify-center items-center gap-2 mt-2 sm:mt-4 pl-5 sm:pl-10 max-w-full p-2">
+            {placedCards.slice(3, 5).map((card, index) => (
+              <div
+                key={index + 3}
+                className="w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1" // Adjusted width and height for better fit
+              >
+                {card ? (
+                  <Card
+                    frontImage={card.image}
+                    backImage={backOfCard}
+                    name={card.name}
+                    onClick={() => handleFlip(index + 3)}
+                    isRevealed={revealed[index + 3] || false}
+                    isInHand={false}
+                  />
+                ) : (
+                  <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Hand (Bottom Row) */}
-        <div className="fixed bottom-0 left-0 w-full bg-pumpkin bg-opacity-80 py-2 sm:static sm:bg-transparent sm:py-0">
-          <div className="flex flex-row justify-center items-center gap-1 sm:gap-2">
+        <div className="fixed bottom-0 left-0 w-full bg-pumpkin bg-opacity-80 py-2 sm:static sm:bg-transparent sm:py-0 overflow-hidden">
+          <div className="flex flex-row justify-center items-center gap-1 sm:gap-2 flex-wrap max-w-full p-2">
             {hand.length > 0 ? (
               hand.map((card, index) => (
                 <Card
@@ -146,7 +140,7 @@ const App = () => {
                   name={card.name}
                   onClick={() => handlePlace(card, index)}
                   isRevealed={false}
-                  isInHand={true}
+                  isInHand={true} // This ensures the card stays small in hand
                 />
               ))
             ) : (
