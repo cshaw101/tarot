@@ -66,7 +66,7 @@ const App = () => {
       {/* Tarot Table */}
       <div className="table-container w-full h-full p-0 m-0 flex flex-col items-center justify-center gap-4 overflow-hidden">
       <h1 className="enchanted-header">
-  <span>🎃</span><span className="text-amber-200">Enchanted Pumpkin Tarot</span>
+  <span className="pumpkin text-amber-200">🎃</span><span className="text-amber-200">Enchanted Pumpkin Tarot</span>
 </h1>
 
         {/* Action Buttons */}

@@ -8,7 +8,7 @@
 }
 
 .table-container {
-    background-image: url('./assets/background/background_image.jpg'); /* Add the correct path here */
+    background-image: url('./assets/background/background_image.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,7 +20,19 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 0 4px; /* Reduced horizontal padding to bring cards closer to viewport */
+  }
+  
+  .table-container .card-container {
+    box-sizing: border-box;
+    margin: 4px; /* Reduced margin to minimize space around cards */
+  }
+  
+  /* Top row card layout */
+  .table-container .flex.justify-center {
+    gap: 8px; /* Adjust gap between cards */
+    padding: 0 4px; /* Minimal padding to keep cards close to viewport */
+    margin: 0; /* Remove any default margin */
   }
   
 
@@ -67,11 +79,6 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-}
-
-.table-container {
-  max-height: 100%;
   overflow: hidden;
 }
 
