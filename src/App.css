@@ -1,39 +1,66 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
-.bg-tarot {
-  background: linear-gradient(180deg, #1a0033 0%, #330066 50%, #000000 100%);
-  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.2)" /%3E%3Ccircle cx="18" cy="18" r="1" fill="rgba(255,255,255,0.2)" /%3E%3C/svg%3E');
-  background-size: 20px 20px;
+.bg-pumpkin {
+  background: linear-gradient(180deg, #7f2a00 0%, #b34d00 50%, #331100 100%);
+  background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 10c-2 0-3 2-4 4s-2 4-4 4-3-2-4-4c-1-2-2-4-4-4s-3 2-4 4c-1 2-2 4-4 4v2c2 0 3-2 4-4s2-4 4-4 3 2 4 4c1 2 2 4 4 4s3-2 4-4c1-2 2-4 4-4s3 2 4 4c1 2 2 4 4 4v-2c-2 0-3-2-4-4s-2-4-4-4-3 2-4-4c-1-2-2-4-4-4z" fill="rgba(255,165,0,0.03)" /%3E%3C/svg%3E');
+  background-size: 80px 80px;
 }
 
 .table-container {
-  background: linear-gradient(145deg, #4b0082, #800080);
-  border: 3px solid #ffd700;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 4px 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, #8b1e00, #d2691e);
+  border: 3px solid #f4a261;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7), 0 4px 6px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.table-container::before {
+  content: '🎃';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  color: rgba(244, 162, 97, 0.3);
+  font-size: 18px;
+}
+.table-container::after {
+  content: '🎃';
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  color: rgba(244, 162, 97, 0.3);
+  font-size: 18px;
 }
 
-.rune-button {
-  @apply px-6 py-3 rounded-lg shadow-lg text-sm sm:text-base font-semibold;
-  background: linear-gradient(145deg, #4b0082, #6a0dad);
-  border: 2px solid #ffd700;
+.lantern-button {
+  @apply px-8 py-4 rounded-lg shadow-lg text-xs font-semibold;
+  background: linear-gradient(145deg, #ff4500, #ff8c00);
+  border: 2px solid #f4a261;
   transition: transform 0.2s, box-shadow 0.3s;
 }
-.rune-button:hover:not(:disabled) {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
-.rune-button:active {
-  transform: scale(0.95);
+.lantern-button:active {
+  transform: scale(0.90);
+  box-shadow: 0 0 12px rgba(244, 162, 97, 0.9);
 }
 
 .card-glow {
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
-.card-glow:hover {
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+.card-glow:active {
+  box-shadow: 0 0 10px rgba(244, 162, 97, 0.9);
 }
 
-.font-tarot {
+.font-pumpkin {
   font-family: 'Cinzel', serif;
 }
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  /* Prevent the table from exceeding screen size */
+  .table-container {
+    max-height: 100%;
+    overflow: hidden;
+  }

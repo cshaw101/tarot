@@ -56,63 +56,91 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-tarot flex flex-col items-center justify-between p-4 sm:p-6">
+    <div className="w-screen h-screen bg-pumpkin overflow-hidden flex flex-col items-center justify-center m-0 p-0">
+
+
       {/* Tarot Table */}
-      <div className="table-container relative w-full max-w-4xl rounded-2xl shadow-lg p-6 sm:p-8 flex flex-col items-center justify-between">
+      <div className="table-container w-full h-full p-0 m-0 flex flex-col items-center justify-center">
+
         {/* Header */}
-        <h1 className="text-xl sm:text-2xl font-tarot text-yellow-200 mb-4">🌙 Tarot Reading</h1>
+        <h1 className="text-base sm:text-2xl font-pumpkin text-amber-200 mb-2 sm:mb-4">🎃 Enchanted Pumpkin Tarot</h1>
 
         {/* Action Buttons */}
-        <div className="flex space-x-4 mb-6">
+        <div className="flex space-x-2 mb-3 sm:mb-6">
           <button
-            className="rune-button bg-purple-800 text-yellow-200 disabled:bg-gray-600"
+            className="lantern-button bg-orange-800 text-amber-200 disabled:bg-gray-600"
             onClick={handleDeal}
             disabled={hand.length > 0 || placedCards.some(card => card !== null)}
           >
             Deal Cards
           </button>
           <button
-            className="rune-button bg-purple-800 text-yellow-200"
+            className="lantern-button bg-orange-800 text-amber-200"
             onClick={handleShuffle}
           >
             Shuffle
           </button>
         </div>
 
-        {/* Placed Cards (Table Slots) */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-6">
-          {placedCards.map((card, index) => (
-            <div
-              key={index}
-              className="w-[90px] h-[144px] sm:w-[110px] sm:h-[176px] bg-purple-900 rounded-lg flex items-center justify-center transform"
-              style={{ transform: `rotate(${(index - 2) * 5}deg)` }}
-            >
-              {card ? (
-                <Card
-                  frontImage={card.image}
-                  backImage={backOfCard}
-                  name={card.name}
-                  onClick={() => handleFlip(index)}
-                  isRevealed={revealed[index] || false}
-                  isInHand={false}
-                />
-              ) : (
-                <span className="text-yellow-300">Empty</span>
-              )}
-            </div>
-          ))}
-        </div>
+      {/* Placed Cards (Table Slots) */}
+<div className="flex flex-col items-center justify-center gap-2 sm:gap-4 flex-1">
+  {/* Top row: 3 cards */}
+  <div className="flex justify-center items-center gap-2 sm:gap-4">
+    {placedCards.slice(0, 3).map((card, index) => (
+      <div
+        key={index}
+        className="w-[80px] h-[128px] sm:w-[130px] sm:h-[200px]
+ bg-orange-900 rounded-lg flex items-center justify-center"
+      >
+        {card ? (
+          <Card
+            frontImage={card.image}
+            backImage={backOfCard}
+            name={card.name}
+            onClick={() => handleFlip(index)}
+            isRevealed={revealed[index] || false}
+            isInHand={false}
+          />
+        ) : (
+          <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {/* Bottom row: 2 cards, slightly indented */}
+  <div className="flex justify-center items-center gap-2 sm:gap-4 mt-1 sm:mt-2 pl-6 sm:pl-12">
+    {placedCards.slice(3, 5).map((card, index) => (
+      <div
+        key={index + 3}
+        className="w-[80px] h-[128px] sm:w-[130px] sm:h-[200px]
+ bg-orange-900 rounded-lg flex items-center justify-center"
+      >
+        {card ? (
+          <Card
+            frontImage={card.image}
+            backImage={backOfCard}
+            name={card.name}
+            onClick={() => handleFlip(index + 3)}
+            isRevealed={revealed[index + 3] || false}
+            isInHand={false}
+          />
+        ) : (
+          <span className="text-amber-300 text-xs sm:text-sm">Empty</span>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
 
         {/* Hand (Bottom Row) */}
-        <div className="flex justify-center items-center gap-1 smවන්න sm:gap-2">
-          {hand.length > 0 ? (
-            hand.map((card, index) => (
-              <div
-                key={index}
-                className="transform"
-                style={{ transform: `rotate(${(index - 2) * 5}deg)` }}
-              >
+        <div className="fixed bottom-0 left-0 w-full bg-pumpkin bg-opacity-80 py-2 sm:static sm:bg-transparent sm:py-0">
+          <div className="flex flex-row justify-center items-center gap-1 sm:gap-2">
+            {hand.length > 0 ? (
+              hand.map((card, index) => (
                 <Card
+                  key={index}
                   frontImage={card.image}
                   backImage={backOfCard}
                   name={card.name}
@@ -120,11 +148,11 @@ const App = () => {
                   isRevealed={false}
                   isInHand={true}
                 />
-              </div>
-            ))
-          ) : (
-            <p className="text-yellow-200">Click "Deal Cards" to begin!</p>
-          )}
+              ))
+            ) : (
+              <p className="text-amber-200 text-xs sm:text-base">Click "Deal Cards" to begin!</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
