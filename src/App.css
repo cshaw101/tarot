@@ -77,7 +77,6 @@ html, body, #root {
 
 .enchanted-header {
     font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
     color: #ffebc8;
     letter-spacing: 2px;
     position: relative;
@@ -85,7 +84,10 @@ html, body, #root {
       0 0 6px #f4a261,
       0 0 12px #ffba86;
     padding: 0.5rem 1rem;
+    white-space: nowrap; /* Prevents the header from wrapping */
+    font-size: 6vw; /* Adjust font size based on viewport width */
   }
+  
   
   /* Pumpkin glow flicker */
   .enchanted-header .pumpkin {
