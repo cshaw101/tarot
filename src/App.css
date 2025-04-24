@@ -8,17 +8,21 @@
 }
 
 .table-container {
-  background: linear-gradient(145deg, #8b1e00, #d2691e);
-  border: 3px solid #f4a261;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7), 0 4px 6px rgba(0, 0, 0, 0.5);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-}
+    background-image: url('./assets/background/background_image.jpg'); /* Add the correct path here */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid #f4a261;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7), 0 4px 6px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
 
 .table-container::before {
   content: '🎃';
@@ -70,3 +74,4 @@ html, body, #root {
   max-height: 100%;
   overflow: hidden;
 }
+

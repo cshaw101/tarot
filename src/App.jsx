@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
 import backOfCard from './assets/backOfCard/back.jpg';
+import background_image from './assets/background/background_image.jpg'
 import './App.css';
 
 const App = () => {
@@ -9,7 +10,6 @@ const App = () => {
   const [placedCards, setPlacedCards] = useState([null, null, null, null, null]);
   const [revealed, setRevealed] = useState({});
 
-  // Load tarot card images
   useEffect(() => {
     const images = import.meta.glob('./assets/tarot/*.jpg', { eager: true });
     const cardList = Object.entries(images).map(([path, module]) => {
@@ -22,7 +22,6 @@ const App = () => {
     setDeck(cardList);
   }, []);
 
-  // Deal 5 random cards
   const handleDeal = () => {
     if (hand.length > 0 || placedCards.some(card => card !== null)) return;
     const shuffled = [...deck].sort(() => 0.5 - Math.random());
@@ -30,7 +29,6 @@ const App = () => {
     setHand(drawnCards);
   };
 
-  // Place a card from hand to a slot
   const handlePlace = (card, handIndex) => {
     const nextEmptySlot = placedCards.findIndex(slot => slot === null);
     if (nextEmptySlot === -1) return;
@@ -40,7 +38,6 @@ const App = () => {
     setHand(prev => prev.filter((_, i) => i !== handIndex));
   };
 
-  // Flip a placed card
   const handleFlip = (index) => {
     setRevealed(prev => ({
       ...prev,
@@ -48,7 +45,6 @@ const App = () => {
     }));
   };
 
-  // Shuffle (reset game)
   const handleShuffle = () => {
     setHand([]);
     setPlacedCards([null, null, null, null, null]);
@@ -56,7 +52,17 @@ const App = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-pumpkin overflow-hidden flex flex-col items-center justify-center m-0 p-0">
+    <div
+    className="w-screen h-screen overflow-hidden flex flex-col items-center justify-center m-0 p-0"
+    style={{
+      backgroundImage: `url(${background_image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundColor: 'transparent', // Ensure no color is applied behind the image
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed', // This can sometimes improve the effect
+    }}
+  >
       {/* Tarot Table */}
       <div className="table-container w-full h-full p-0 m-0 flex flex-col items-center justify-center gap-4 overflow-hidden">
         {/* Header */}
@@ -86,7 +92,7 @@ const App = () => {
             {placedCards.slice(0, 3).map((card, index) => (
               <div
                 key={index}
-                className="w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1" // Adjusted width and height for better fit
+                className="card-container w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1"
               >
                 {card ? (
                   <Card
@@ -104,12 +110,12 @@ const App = () => {
             ))}
           </div>
 
-          {/* Bottom row: 2 cards, slightly indented */}
+          {/* Bottom row: 2 cards */}
           <div className="flex justify-center items-center gap-2 mt-2 sm:mt-4 pl-5 sm:pl-10 max-w-full p-2">
             {placedCards.slice(3, 5).map((card, index) => (
               <div
                 key={index + 3}
-                className="w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1" // Adjusted width and height for better fit
+                className="card-container w-[140px] h-[220px] bg-orange-900 rounded-lg flex items-center justify-center m-1"
               >
                 {card ? (
                   <Card
@@ -140,7 +146,7 @@ const App = () => {
                   name={card.name}
                   onClick={() => handlePlace(card, index)}
                   isRevealed={false}
-                  isInHand={true} // This ensures the card stays small in hand
+                  isInHand={true}
                 />
               ))
             ) : (

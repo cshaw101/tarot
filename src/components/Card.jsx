@@ -9,7 +9,7 @@ const Card = ({ frontImage, backImage, name, onClick, isRevealed, isInHand }) =>
           : "w-[150px] h-[240px]" // size for placed cards
       } cursor-pointer transition-transform duration-300 transform ${
         isInHand ? "" : "scale-100" // Prevent excessive scaling when placed
-      } card-glow`}
+      } card-glow hover:scale-110 hover:shadow-lg hover:shadow-amber-300`}
       onClick={onClick}
       role="button"
       aria-label={isInHand ? `Place ${name} in slot` : `Flip ${name}`}
@@ -18,7 +18,7 @@ const Card = ({ frontImage, backImage, name, onClick, isRevealed, isInHand }) =>
         <img
           src={isRevealed ? frontImage : backImage}
           alt={name}
-          className={`w-full h-full ${isRevealed ? 'object-contain' : 'object-cover'} transition-opacity duration-300`}
+          className={`w-full h-full ${isRevealed ? 'object-contain' : 'object-cover'} transition-opacity duration-500`}
         />
       </div>
     </div>
