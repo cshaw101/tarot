@@ -24,8 +24,8 @@ const App = () => {
 
   const handleDeal = () => {
     if (hand.length > 0 || placedCards.some(card => card !== null)) return;
-    const shuffled = [...deck].sort(() => 0.5 - Math.random());
-    const drawnCards = shuffled.slice(0, 5);
+    const shuffled = [...deck].sort(() => 0.3 - Math.random());
+    const drawnCards = shuffled.slice(0, 3);
     setHand(drawnCards);
   };
 
@@ -111,7 +111,7 @@ const App = () => {
             ))}
           </div>
 
-          {/* Bottom row: 2 cards */}
+          {/* Bottom row: 2 cards
           <div className="flex justify-center items-center gap-2 mt-2 sm:mt-4 pl-5 sm:pl-10 max-w-full p-2">
             {placedCards.slice(3, 5).map((card, index) => (
               <div
@@ -132,7 +132,7 @@ const App = () => {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Hand (Bottom Row) */}
